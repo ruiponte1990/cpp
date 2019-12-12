@@ -13,8 +13,8 @@ namespace LRU
 
             Node (string data) {
                 this->data = data;
-                this->next = nullptr;
-                this->prev = nullptr;
+                this->next = NULL;
+                this->prev = NULL;
             }
     };
 }
