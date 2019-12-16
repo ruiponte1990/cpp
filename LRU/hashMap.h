@@ -28,6 +28,7 @@ namespace LRU
             }
 
             int collision_func(int collisions) {
+                // return (pow(collisions,2)/2);
                 return collisions;
             }
 
@@ -37,32 +38,49 @@ namespace LRU
                     int len = this->size;
                     int idx = hash % len;
                     int collisions = 0;
-                    while (this->table[idx] != NULL) {
+                    while (this->table[idx] != NULL && this->table[idx]->key != data) {
                         collisions++;
                         idx = (hash + collision_func(collisions)) % len; 
                     }
                     if (this->table[idx] == NULL) {
                         hashNode *node = new hashNode(data, addr);
                         this->table[idx] = node;
-                        population++;
+                        this->population++;
+                    } else{
+                        hashNode *node = new hashNode(data, addr);
+                        this->table[idx] = node;
                     }
                 }
             }
 
             void delete_node(string data) {
                 if (this->population > 0) {
+                    int lookup = this->lookup(data);
+                    if (lookup != -1) {
+                        delete this->table[lookup];
+                        this->table[lookup] = NULL;
+                        this->population--;
+                    }
+                }
+            }
+
+            int lookup (string data) {
+                if (this->population > 0) {
                     int hash = hash_func(data);
                     int len = this->size;
                     int idx = hash % len;
                     int collisions = 0;
-                    while (this->table[idx] != NULL && this->table[idx]->key != data) {
+                    while (this->table[idx] != NULL && this->table[idx]->key != data && collisions < this->size) {
                         collisions++;
                         idx = (hash + collision_func(collisions)) % len;
                     }
-                    if (this->table[idx] != NULL && this->table[idx]->key == data) {
-                        delete this->table[idx];
-                        population--;
+                    if (this->table[idx] && this->table[idx]->key == data) {
+                        return idx;
+                    } else {
+                        return -1;
                     }
+                }else {
+                    return -1;
                 }
             }
 
