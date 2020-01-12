@@ -1,6 +1,8 @@
 #include <string> 
 using namespace std;
 
+#ifndef NODE
+#define NODE
 namespace LRU
 
 {
@@ -20,3 +22,4 @@ namespace LRU
             }
     };
 }
+#endif

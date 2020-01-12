@@ -16,7 +16,7 @@ namespace LRU
 
             void add_first(string key, string data){
                 Node *new_node = new Node(key, data);
-                if ( this->head == NULL) {
+                if ( this->size == 0) {
                     this->head = new_node;
                     this->tail = new_node;
                 } else{
@@ -35,7 +35,7 @@ namespace LRU
 
             void add_last(string key, string data) {
                 Node *new_node = new Node(key, data);
-                if (this->head == NULL) {
+                if (this->size == 0) {
                     this->head = new_node;
                     this->tail = new_node;
                 } else {
@@ -155,14 +155,14 @@ namespace LRU
             }
 
             void print_list() {
-                cout << "head: " << this->head->data << ".\n";
+                cout << "head key: " << this->head->key << ". head data: " << this->head->data << ".\n";
                 Node *curr = this->head;
                 while (curr->next) {
                     print_node(curr);
                     curr = curr->next;
                 }
                 print_node(curr);
-                cout << "tail: " << this->tail->data << ".\n";
+                cout << "tail key: " << this->tail->key << ". tail data: " << this->tail->data << ".\n";
             }
 
             void print_node(Node *node) {
@@ -175,7 +175,7 @@ namespace LRU
                 cout << "curr key: " << node->key << ". ";
                 cout << "curr data: " << node->data << ". ";
                 if (node->next) {
-                    cout << "next key: " << node->next->key << ".\n";
+                    cout << "next key: " << node->next->key << ". ";
                     cout << "next data: " << node->next->data << ".\n";
                 } else{
                     cout << "next: Null.\n";
