@@ -18,6 +18,10 @@ namespace LRU
                 this->population = 0;
             }
 
+            hashNode** getTable(){
+                return this->table;
+            }
+
             int hash_func(string data) {
                 int hash = 13;
                 int len = data.size();

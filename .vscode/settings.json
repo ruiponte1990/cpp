@@ -14,6 +14,8 @@
         "typeindex": "cpp",
         "utility": "cpp",
         "vector": "cpp",
-        "iostream": "cpp"
-    }
+        "iostream": "cpp",
+        "filesystem": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

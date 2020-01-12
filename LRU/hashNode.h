@@ -11,8 +11,8 @@ namespace LRU
             string key;
             Node *value;
 
-            hashNode (string data, Node *value) {
-                this->key = data;
+            hashNode (string key, Node *value) {
+                this->key = key;
                 this->value=value;
             }
     };
